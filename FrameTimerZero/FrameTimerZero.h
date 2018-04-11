@@ -7,7 +7,7 @@
 
 #ifndef _FrameTimerZero_h
 #define _FrameTimerZero_h
-typedef void(*FrameCallback)(uint32_t);
+
 #if defined(ARDUINO) && ARDUINO >= 100
 	#include "arduino.h"
 #else
@@ -16,6 +16,8 @@ typedef void(*FrameCallback)(uint32_t);
 
 class FrameTimerZero {
 public:
+	typedef void(*FrameCallback)(uint32_t);
+
 	FrameTimerZero(uint8_t FPS);
 	FrameTimerZero(uint8_t FPS, FrameCallback frame);
 	void setStartFrame(FrameCallback callback);
