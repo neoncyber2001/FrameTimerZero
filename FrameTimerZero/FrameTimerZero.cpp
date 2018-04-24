@@ -62,14 +62,15 @@ void FrameTimerZero::pause()
 void FrameTimerZero::resume()
 {
 	if (!m_IsRunning) {
-		m_IsRunning = false;
+		m_IsRunning = true;
 	}
 }
 
 void FrameTimerZero::checkFrame(uint32_t time)
 {
 	if (m_IsRunning && (m_NextTime <= time)) {
-		
+
+		m_NextTime = time + m_FrameTime;
 		if (m_IsFrameStart) {
 			m_StartFrame(m_FrameCount);
 		}
@@ -78,8 +79,7 @@ void FrameTimerZero::checkFrame(uint32_t time)
 		}
 		if (m_IsFrameEnd) {
 			m_EndFrame(m_FrameCount);
-		}
-		m_NextTime = time + m_FrameTime;		
+		}	
 		m_FrameCount++;
 	}
 
